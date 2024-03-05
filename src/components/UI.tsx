@@ -1,19 +1,25 @@
-import { PlusSquare } from "lucide-react";
+import { useGameStore } from "../store";
+
+const Background = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className='absolute top-0 w-full h-full bg-slate-950 bg-opacity-70'>
+      <div className='flex flex-col w-full h-full justify-center items-center'>
+        { children }
+      </div>
+    </div>
+  )
+}
 
 const UI = () => {
+  const showInventory = useGameStore((state) => state.showInventory);
+
   return (
-    <div className='absolute top-0 right-0 p-3'>
-      <div className='flex gap-3'>
-        <button className='bg-white border-slate-900
-          rounded-lg border-2
-          flex items-center justify-center
-          cursor-pointer
-          text-xl text-slate-900
-          p-1'
-        >
-          <PlusSquare className='w-8 h-8' />
-        </button>
-      </div>
+    <div>
+      { showInventory && (
+        <Background>
+          <div></div>
+        </Background>
+      )}
     </div>
   );
 }

@@ -6,6 +6,8 @@ Command: npx gltfjsx@6.2.16 ./public/models/Chicken.glb --types
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
 import { GLTF } from 'three-stdlib'
+import { useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -25,9 +27,17 @@ type GLTFResult = GLTF & {
 }
 
 export function Chicken(props: JSX.IntrinsicElements['group']) {
+  const groupRef = useRef<THREE.Group>(null);
   const { nodes, materials } = useGLTF('./models/chicken/model.glb') as GLTFResult
+
+  useFrame(() => {
+    if (!groupRef.current) return;
+      
+    groupRef.current.rotation.y += 0.01;
+  });
+
   return (
-    <group {...props} dispose={null}>
+    <group ref={groupRef} {...props} dispose={null}>
       <mesh geometry={nodes['Cube035_Cube034-Mesh'].geometry} material={materials.FF9800} />
       <mesh geometry={nodes['Cube035_Cube034-Mesh_1'].geometry} material={materials.FFFFFF} />
       <mesh geometry={nodes['Cube035_Cube034-Mesh_2'].geometry} material={materials['1A1A1A']} />

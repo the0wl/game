@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import * as THREE from "three";
 
 export interface IBlock {
   available: boolean
@@ -7,9 +8,12 @@ export interface IBlock {
 interface GameState {
   blocks: IBlock[],
   debug: boolean,
-  startGame: () => void,
-  startGameDebug: () => void,
-  addBlock: (index: number) => void
+  showInventory: boolean,
+  clock: THREE.Clock,
+
+  startGame: (debug: boolean) => void,
+  addBlock: (index: number) => void,
+  toggleInventoryVisibility: () => void,
 }
 
 const setBlockAvailable = (blocks : IBlock[], x: number, y: number) => {
@@ -37,20 +41,16 @@ const createGame = (blocks: IBlock[]) => {
 export const useGameStore = create<GameState>()((set, get) => ({
   blocks: new Array(16).fill({}),
   debug: false,
+  showInventory: false,
+  clock: new THREE.Clock(),
   
-  startGame: () => {
+  startGame: (debug: boolean = false) => {
     set((state: GameState) => {
       const blocks = [...state.blocks];
+      const clock = state.clock;
+      clock.start();
       createGame(blocks);
-      return { blocks, debug: false };
-    })
-  },
-
-  startGameDebug: () => {
-    set((state: GameState) => {
-      const blocks = [...state.blocks];
-      createGame(blocks);
-      return { blocks, debug: true };
+      return { ...state, blocks, debug, clock };
     })
   },
 
@@ -58,7 +58,14 @@ export const useGameStore = create<GameState>()((set, get) => ({
     set((state: GameState) => {
       const blocks = [...state.blocks];
       setBlockAvailableByIndex(blocks, index);
-      return { blocks, debug: state.debug };
+      
+      return { ...state, blocks };
+    })
+  },
+
+  toggleInventoryVisibility: () => {
+    set((state: GameState) => {
+      return { ...state, showInventory: !state.showInventory };
     })
   }
 }))

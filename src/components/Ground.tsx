@@ -15,7 +15,7 @@ const Ground = () => {
   const blocks = useGameStore((state) => state.blocks);
 
   useEffect(() => {
-    startGame();
+    startGame(false);
   }, []);
 
   return (
