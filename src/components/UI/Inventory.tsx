@@ -1,4 +1,4 @@
-import { useGameStore } from "../store";
+import { useGameStore } from "../../store";
 
 const Background = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -10,7 +10,7 @@ const Background = ({ children }: { children: React.ReactNode }) => {
   )
 }
 
-const UI = () => {
+const Inventory = () => {
   const showInventory = useGameStore((state) => state.showInventory);
 
   return (
@@ -24,4 +24,4 @@ const UI = () => {
   );
 }
 
-export default UI;
+export default Inventory;

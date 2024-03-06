@@ -2,8 +2,8 @@ import { Box } from '@react-three/drei'
 import { ThreeEvent } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import * as THREE from 'three';
-import { useGameStore } from './../store';
-import { Grass } from './Grass';
+import { useGameStore } from '../../store';
+import { Grass } from '../model/Grass';
 
 interface GroundBlockProps {
   position: THREE.Vector3;

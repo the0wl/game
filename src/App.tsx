@@ -3,7 +3,7 @@ import Game from './pages/game'
 import { Suspense, useEffect } from 'react'
 import { Physics } from '@react-three/rapier';
 import { Stats } from '@react-three/drei'
-import { UI } from './components';
+import { Inventory } from './components';
 import { useGameStore } from './store';
 
 function App() {
@@ -37,7 +37,7 @@ function App() {
         </Suspense>
         { debug && <Stats/> }
       </Canvas>
-      <UI />
+      <Inventory />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import GroundBlock from "./GroundBlock";
 import { useEffect } from 'react';
-import { useGameStore, IBlock } from './../store';
+import { useGameStore, IBlock } from '../../store';
 import * as THREE from 'three';
 
 const Ground = () => {

@@ -1,7 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef, useState } from 'react';
 import * as THREE from 'three';
-import { useGameStore } from '../store';
+import { useGameStore } from '../../store';
 
 const Water = () => {
   const meshRef = useRef<THREE.Mesh>(null);
