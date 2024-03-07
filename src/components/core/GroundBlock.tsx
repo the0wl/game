@@ -3,7 +3,6 @@ import { ThreeEvent } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import * as THREE from 'three';
 import { useGameStore } from '../../store';
-import { Grass } from '../model/Grass';
 
 interface GroundBlockProps {
   position: THREE.Vector3;
@@ -19,7 +18,7 @@ const wireframeMaterial = new THREE.MeshBasicMaterial({
   transparent: true,
 });
 
-const GroundBlock = (props : GroundBlockProps) => {
+const GroundBlock = (props : GroundBlockProps) => {  
   const debug = useGameStore((state) => state.debug);
   const addBlock = useGameStore((state) => state.addBlock);
 
@@ -57,7 +56,8 @@ const GroundBlock = (props : GroundBlockProps) => {
       <CuboidCollider args={[5/2, 1, 5/2]}/>
       
       {/* Cube */}
-      <Box args={[5, 1, 5]}
+      <Box
+        args={[5, 1, 5]}
         receiveShadow
         visible={ props.available}
         onPointerMove={handleOnPointerMove} 
@@ -67,7 +67,7 @@ const GroundBlock = (props : GroundBlockProps) => {
         <meshStandardMaterial {...fillMaterial} />
       </Box>
 
-      { props.available && <Grass position={[0, 0.5, 0]} scale={[1.5,1.5,1.5]} /> }
+      {/* { props.available && <Grass position={[0, 0.5, 0]} scale={[1.5,1.5,1.5]} /> } */}
 
       {/* Wireframe */}
       { debug && (

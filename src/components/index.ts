@@ -1,4 +1,4 @@
-import { Ground, GroundBlock, Lights, Water } from "./core"
+import { Ground, GroundBlock, Lights, Ocean } from "./core"
 import { Chicken, Grass } from "./model"
 import { Inventory, WebGLNotSupported } from "./UI"
 
@@ -6,7 +6,7 @@ export {
   Ground,
   GroundBlock,
   Lights,
-  Water,
+  Ocean,
   Chicken,
   Grass,
   WebGLNotSupported,

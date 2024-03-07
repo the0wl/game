@@ -30,7 +30,7 @@ function App() {
         camera={{ position: [0, 0, 30], fov: 42 }}
       >
         <color attach="background" args={['rgb(191, 219, 254)']} />
-        <Suspense>
+        <Suspense fallback={null}>
           <Physics>
             <Game />
           </Physics>
